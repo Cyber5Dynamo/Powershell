@@ -1,0 +1,27 @@
+OU,Management,,,,
+OU,Creative Department,,,,
+OU,Operations,,,,
+OU,Marketing,,,,
+OU,External Consultants,,,,
+User,Homer Simpson,CEO,Management,Executive Leadership Team
+User,Marge Simpson,CFO,Management,Executive Leadership Team;Finance Team
+User,Lisa Simpson,Head of Sustainability Projects,Creative Department,Creative Minds
+User,Bart Simpson,Digital Media Specialist,Marketing,Marketing Mavericks
+User,Maggie Simpson,Creative Consultant,External Consultants,Creative Minds
+User,Montgomery Burns,Senior Advisor,Management,Executive Leadership Team
+User,Ned Flanders,HR Manager,Operations,Operational Staff
+User,Homer Simpson,CEO,Management,Executive Leadership Team
+User,Krusty the Clown,Lead Content Producer,Creative Department,Creative Minds
+User,Mickey Mouse,Brand Ambassador,Marketing,Marketing Mavericks
+User,SpongeBob SquarePants,Social Media Manager,Marketing,Marketing Mavericks
+User,Harry Potter,Magic Consultant,Creative Department,Creative Minds
+User,Sherlock Holmes,Security Consultant,Operations,IT Security;Operational Staff
+User,Gandalf,Innovation Strategist,Creative Department,Creative Minds
+User,Darth Vader,Special Projects Director,Management,Executive Leadership Team
+User,Sherlock Holmes,Security Consultant,Operations,IT Security;Operational Staff
+Group,Executive Leadership Team,"Contains top-level executives",Management,
+Group,Creative Minds,"Includes creative roles",Creative Department,
+Group,Operational Staff,"Comprises operational roles",Operations,
+Group,Marketing Mavericks,"Consists of marketing roles",Marketing,
+Group,Finance Team,"Led by CFO, supports financial operations",Operations,
+Group,IT Security,"Focuses on IT security",Operations,

@@ -1,0 +1,44 @@
+```powershell
+# DHCP-Server einrichten
+ 
+Install-WindowsFeature -Name DHCP -IncludeManagementTools -Verbose
+ 
+
+# Server  (VLAN 100) definieren; IP 192.168.1.0/25
+$ServerStartRange = "192.168.1.1"
+$ServerEnd = "192.168.1.126"
+$ServerMask = "255.255.255.128"
+$ServerRouter = "192.168.1.1"
+$ServerDnsServer = "IP von DNS eintragen"
+$ServerName = "Server"
+Add-DhcpServerv4Scope -Name $ServerName -StartRange $ServerStartRange -EndRange $ServerEndRange -SubnetMask $ServerMask -Router $ServerRouter -State Active
+ 
+# Gebäude 1 (VLAN 200) definieren; IP 192.168.2.0/25
+$Gebaeude1StartRange = "192.168.2.1"
+$Gebaeude1EndRange = "192.168.2.126"
+$Gebaeude1Mask = "255.255.255.128"
+$Gebaeude1Router = "192.168.2.1"
+$Gebaeude1DnsServer = "IP von DNS eintragen"
+$Gebaeude1Name = "Gebaeude1"
+Add-DhcpServerv4Scope -Name $Gebaeude1Name -StartRange $Gebaeude1StartRange -EndRange $Gebaeude1EndRange -SubnetMask $Gebaeude1Mask -Router $Gebaeude1Router -State Active
+# Gebäude 2 (VLAN 300) definieren; IP 192.168.3.0/25
+$Gebaeude2StartRange = "192.168.3.1"
+$Gebaeude2EndRange = "192.168.3.126"
+$Gebaeude2Mask = "255.255.255.128"
+$Gebaeude2Router = "192.168.3.1"
+$Gebaeude2DnsServer = "IP von DNS eintragen"
+$Gebaeude2Name = "Gebaeude2"
+Add-DhcpServerv4Scope -Name $Gebaeude2Name -StartRange $Gebaeude2StartRange -EndRange $Gebaeude2EndRange -SubnetMask $Gebaeude2Mask -Router $Gebaeude2Router -State Active
+ 
+# DHCP-Server hinzufügen
+Add-DhcpServerInDC -DnsName $Gebaeude1DnsServer
+Add-DhcpServerInDC -DnsName $Gebaeude2DnsServer
+Add-DhcpServerInDC -DnsName $ServerDnsServer
+ 
+# DHCP-Bereiche autorisieren
+Start-Sleep -Seconds 10 # Warten, bis der DHCP-Server vollständig initialisiert ist
+Invoke-DhcpServerv4Authorization -IPAddress $Gebaeude1Router
+Invoke-DhcpServerv4Authorization -IPAddress $Gebaeude2Router
+Invoke-DhcpServerv4Authorization -IPAddress $ServerRouter
+ 
+Write-Host "DHCP für beide Gebäude wurde erfolgreich eingerichtet und autorisiert."

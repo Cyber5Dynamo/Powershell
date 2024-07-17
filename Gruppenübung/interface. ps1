@@ -1,0 +1,10 @@
+$ip = "10.0.0.50"
+$iface = "Ethernet 2"
+$gw="10.0.0.1"
+$dns = "10.0.0.1"
+New-NetIPAddress -InterfaceAlias $iface -IPAddress $ip -AddressFamily IPv4 -PrefixLength 24 -DefaultGateway $gw
+Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses $dns
+set-NetIPAddress
+NetIPAddress -InterfaceAlias "Ethernet 2" -confirm:$False
+
+new-NetIPAddress, set-NetIPAddress, remove-NetIPAddress
